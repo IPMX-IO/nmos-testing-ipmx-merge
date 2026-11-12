@@ -1,0 +1,22 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "matcher": "", "hooks": [ { "type": "command", "command": "bd prime --hook-json" } ] }
+    ],
+    "PreCompact": [
+      { "matcher": "", "hooks": [ { "type": "command", "command": "bd prime" } ] }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(make test)",
+      "Bash(make lint)",
+      "Bash(make precommit)",
+      "Bash(make doctor)",
+      "Bash(bd ready*)",
+      "Bash(bd show *)",
+      "Bash(bd list*)",
+      "Bash(bd memories *)"
+    ]
+  }
+}

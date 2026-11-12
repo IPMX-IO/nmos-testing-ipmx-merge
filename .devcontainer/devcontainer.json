@@ -1,0 +1,23 @@
+{
+  "name": "nmos-testing-ipmx-merge-dev",
+  "build": { "dockerfile": "../Dockerfile" },
+  "remoteUser": "dev",
+  // ~/.claude holds Claude Code's transcripts, memory and credentials. Bound to a host
+  // folder, it survives a container rebuild.
+  "initializeCommand": "mkdir -p \"$HOME/.claude-devcontainer/nmos-testing-ipmx-merge\"",
+  "mounts": [
+    "source=${localEnv:HOME}/.claude-devcontainer/nmos-testing-ipmx-merge,target=/home/dev/.claude,type=bind,consistency=cached",
+    // A named volume keeps the VS Code server and its extensions across rebuilds.
+    "source=nmos-testing-ipmx-merge-vscode-server,target=/home/dev/.vscode-server,type=volume"
+  ],
+  // Keeps .claude.json (account record, folder trust) inside the mount above, so a
+  // rebuild does not force the login flow again.
+  "containerEnv": { "CLAUDE_CONFIG_DIR": "/home/dev/.claude" },
+  // Installs the git hooks and initialises the tracker. Safe to run again.
+  "postCreateCommand": "bash scripts/devcontainer-setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [ "anthropic.claude-code", "ms-python.python" ]
+    }
+  }
+}

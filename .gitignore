@@ -1,0 +1,19 @@
+# Editors and OS
+.DS_Store
+.idea/
+*.log
+
+# Other projects' code checked out for work on it (see AGENTS.md)
+work/
+
+# Beads / Dolt
+.dolt/
+*.db
+.beads-credential-key
+.beads/embeddeddolt.docker-link
+.beads/proxieddb/
+
+# Claude Code: per-machine and transient
+.claude/settings.local.json
+.claude/worktrees/
+.claude/projects/
